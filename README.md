@@ -1,16 +1,39 @@
-## Hi there 👋
+👨‍🔬 Alireza Lashkaripour | Ph.D. Candidate in Theoretical Chemistry
 
-<!--
-**Alireza-Lashkaripour/Alireza-Lashkaripour** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+🎮 Gamer | 🧪 Chemist | 💻 Developer
+🚀 About Me
 
-Here are some ideas to get you started:
+🎓 Ph.D. Candidate in Theoretical Chemistry at Kyungpook National University, South Korea.
+🔬 Research Areas: Excited-state dynamics, MRSF-TDDFT, and non-adiabatic molecular dynamics.
+💻 Developer: Contributor to Open Quantum Platform (OpenQP).
+🎮 Gamer: Big fan of Apex Legends, always ready for a ranked match!
+📖 History Enthusiast: Love diving into the history of science and unraveling its mysteries.
+🧪 What I Work On
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+🔹 Quantum Chemistry: Exploring molecular interactions and dynamics.
+🔹 Software Development: Building tools to simplify and advance computational chemistry.
+🔹 Scientific Discovery: Designing new materials for excited-state properties.
+🛠️ Tools and Technologies
+
+
+
+🌟 GitHub Highlights
+
+
+
+📚 Research and Achievements
+
+📜 Publications:
+
+    OpenQP: A Quantum Chemical Platform featuring MRSF-TDDFT.
+    Ultra High Throughput Screening of inverted singlet-triplet materials.
+
+🏆 Achievements:
+
+    Full KINGS Scholarship recipient.
+    Participated in ICTP Machine Learning Workshop and Density Functional Theory courses.
+
+🎮 When I’m Not Coding...
+
+I’m usually playing Apex Legends or exploring the exciting history of science!
+🌐 Let’s Connect!
