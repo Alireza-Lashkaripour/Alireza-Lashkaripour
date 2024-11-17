@@ -1,39 +1,60 @@
-👨‍🔬 Alireza Lashkaripour | Ph.D. Candidate in Theoretical Chemistry
+🌌 Alireza Lashkaripour
 
-🎮 Gamer | 🧪 Chemist | 💻 Developer
+Ph.D. Candidate | Theoretical Chemist | Quantum Explorer | Apex Legends Fanatic
+
 🚀 About Me
 
-🎓 Ph.D. Candidate in Theoretical Chemistry at Kyungpook National University, South Korea.
-🔬 Research Areas: Excited-state dynamics, MRSF-TDDFT, and non-adiabatic molecular dynamics.
-💻 Developer: Contributor to Open Quantum Platform (OpenQP).
-🎮 Gamer: Big fan of Apex Legends, always ready for a ranked match!
-📖 History Enthusiast: Love diving into the history of science and unraveling its mysteries.
-🧪 What I Work On
+🎓 Pursuing Ph.D. in Theoretical Chemistry at Kyungpook National University, South Korea.
+🧪 Quantum Chemist: Specializing in non-adiabatic molecular dynamics, inverted S1-T1 gaps, and theoretical frameworks like MRSF-TDDFT.
+💻 Developer: Active contributor to Open Quantum Platform (OpenQP).
+🎮 Gamer: Avid Apex Legends player—always dropping hot into the action!
+📖 History Buff: Deeply passionate about the history of science and its revolutionary breakthroughs.
+🎯 What I Do
 
-🔹 Quantum Chemistry: Exploring molecular interactions and dynamics.
-🔹 Software Development: Building tools to simplify and advance computational chemistry.
-🔹 Scientific Discovery: Designing new materials for excited-state properties.
-🛠️ Tools and Technologies
+    🔬 Design and study materials with inverted singlet-triplet gaps using advanced quantum methods.
+    🛠️ Develop tools to accelerate research in computational chemistry and molecular dynamics.
+    🎲 Balance precision and creativity in coding, gaming, and research.
 
-
-
-🌟 GitHub Highlights
+📊 GitHub Highlights
+🔥 Activity Stats
 
 
+🛠️ Top Languages
 
-📚 Research and Achievements
+🛠️ Technical Expertise
+
+
+
+
+
+🧪 Research Contributions
 
 📜 Publications:
 
-    OpenQP: A Quantum Chemical Platform featuring MRSF-TDDFT.
-    Ultra High Throughput Screening of inverted singlet-triplet materials.
+    OpenQP: A Quantum Chemical Platform featuring MRSF-TDDFT methods for theoretical and practical applications.
+    Screening Excited States: Ultra High Throughput Screening for materials with inverted singlet-triplet gaps.
 
-🏆 Achievements:
+🎖️ Achievements:
 
-    Full KINGS Scholarship recipient.
-    Participated in ICTP Machine Learning Workshop and Density Functional Theory courses.
+    Recipient of the KINGS Scholarship for outstanding academic excellence.
+    Presented groundbreaking research at ISTCP 2024 and other prestigious conferences.
 
-🎮 When I’m Not Coding...
+🎮 When I’m Not Working...
 
-I’m usually playing Apex Legends or exploring the exciting history of science!
-🌐 Let’s Connect!
+I’m probably:
+🎮 Gaming: Exploring the battlefields of Apex Legends and sharpening my competitive skills.
+📖 Learning: Delving into the history of science and exploring new technologies.
+🛤️ Walking: Taking a break to explore Daegu, South Korea.
+
+🌐 Let's Connect!
+
+Feel free to reach out if you want to collaborate, chat, or drop into Apex Legends together:
+
+    📧 Email: alireza.lashkaripour00@gmail.com
+    🌐 Website: OpenQP
+    🧑‍🔬 LinkedIn: Alireza Lashkaripour
+
+
+✨ Fun Fact
+
+When I'm not decoding quantum states or gaming, I'm dreaming of merging science and gaming into one epic project!
