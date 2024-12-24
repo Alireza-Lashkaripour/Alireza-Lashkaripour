@@ -1,0 +1,35 @@
+name: Update Language Stats GIF
+
+on:
+  schedule:
+    - cron: '0 0 * * *' 
+  workflow_dispatch: 
+
+jobs:
+  language-stats:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set Up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: |
+          pip install matplotlib pandas pillow requests
+
+      - name: Generate Language Stats GIF
+        run: |
+          python generate_language_stats.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add language_stats.gif
+          git commit -m "Update language stats GIF"
+          git push
