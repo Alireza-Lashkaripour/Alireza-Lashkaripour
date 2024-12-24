@@ -49,6 +49,8 @@ if total_bytes == 0:
     raise ValueError("No language data found across repositories after filtering.")
 
 language_stats = {lang: (bytes_used / total_bytes) * 100 for lang, bytes_used in languages.items()}
+language_stats = {lang: percentage for lang, percentage in language_stats.items() if percentage > 0}
+
 df = pd.DataFrame(list(language_stats.items()), columns=['Language', 'Percentage'])
 df = df.sort_values(by='Percentage', ascending=False)
 
