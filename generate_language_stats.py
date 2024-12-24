@@ -35,7 +35,6 @@ for repo in repos:
     lang_response = requests.get(lang_url, headers={'Authorization': f'token {TOKEN}'})
     
     if lang_response.status_code != 200:
-        print(f"Failed to fetch languages for {repo['name']}: {lang_response.status_code}")
         continue
     
     lang_data = lang_response.json()
@@ -66,4 +65,4 @@ def update(frame):
 ani = FuncAnimation(fig, update, frames=10, repeat=False)
 ani.save('language_stats.gif', writer='pillow')
 
-print("✅ Language usage GIF generated: 'language_stats.gif'")
+print("Language usage GIF generated: 'language_stats.gif'")
