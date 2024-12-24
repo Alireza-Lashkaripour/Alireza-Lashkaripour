@@ -45,21 +45,28 @@ if total_bytes == 0:
     raise ValueError("No language data found across repositories.")
 
 language_stats = {lang: (bytes_used / total_bytes) * 100 for lang, bytes_used in languages.items()}
-
 df = pd.DataFrame(list(language_stats.items()), columns=['Language', 'Percentage'])
 df = df.sort_values(by='Percentage', ascending=False)
 
 fig, ax = plt.subplots(figsize=(10, 10))
+colors = plt.cm.tab20.colors[:len(df['Language'])]
+
 wedges, texts, autotexts = ax.pie(
     df['Percentage'], 
     labels=df['Language'], 
     autopct=lambda p: f'{p:.1f}%' if p > 0 else '',
     startangle=140,
-    textprops={'fontsize': 12}
+    textprops={'fontsize': 12},
+    colors=colors
 )
-plt.setp(autotexts, size=10, weight="bold")
-ax.axis('equal')
-plt.title('GitHub Language Usage Across All Repositories', fontsize=14, weight='bold')
 
+for text, autotext in zip(texts, autotexts):
+    text.set(size=12)
+    autotext.set(size=10, weight="bold")
+
+ax.axis('equal')
+plt.title('GitHub Language Usage Across All Repositories', fontsize=16, weight='bold')
+plt.tight_layout()
 plt.savefig('language_stats.gif', format='gif')
+
 print("Language usage GIF generated: 'language_stats.gif'")
