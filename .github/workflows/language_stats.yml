@@ -26,15 +26,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install matplotlib pandas pillow requests
 
+      - name: Debug Python Environment
+        run: |
+          python --version
+          pip --version
+          pip list
+
       - name: Verify GitHub Token
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           if [[ -z "${GH_TOKEN}" ]]; then
-            echo " GitHub token (GH_TOKEN) is missing. Ensure it's set in repository secrets."
+            echo "❌ GitHub token (GH_TOKEN) is missing. Ensure it's set in repository secrets."
             exit 1
           else
-            echo " GitHub token is available."
+            echo "✅ GitHub token is available."
           fi
 
       - name: Generate Language Stats GIF
@@ -51,8 +57,8 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add language_stats.gif
           if git status | grep -q 'language_stats.gif'; then
-            git commit -m " Update language stats GIF"
+            git commit -m "🔄 Update language stats GIF"
             git push https://${GH_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
           else
-            echo " No changes to commit."
+            echo "⚠️ No changes to commit."
           fi
