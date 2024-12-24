@@ -50,16 +50,16 @@ df = pd.DataFrame(list(language_stats.items()), columns=['Language', 'Percentage
 df = df.sort_values(by='Percentage', ascending=False)
 
 fig, ax = plt.subplots(figsize=(10, 10))
-ax.pie(
+wedges, texts, autotexts = ax.pie(
     df['Percentage'], 
     labels=df['Language'], 
-    autopct='%1.1f%%', 
-    startangle=140, 
+    autopct=lambda p: f'{p:.1f}%' if p > 0 else '',
+    startangle=140,
     textprops={'fontsize': 12}
 )
+plt.setp(autotexts, size=10, weight="bold")
 ax.axis('equal')
-plt.title('GitHub Language Usage Across All Repositories', fontsize=14)
+plt.title('GitHub Language Usage Across All Repositories', fontsize=14, weight='bold')
 
 plt.savefig('language_stats.gif', format='gif')
-
 print("Language usage GIF generated: 'language_stats.gif'")
