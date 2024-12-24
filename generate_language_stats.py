@@ -41,7 +41,7 @@ for repo in repos:
     for lang, bytes_used in lang_data.items():
         languages[lang] = languages.get(lang, 0) + bytes_used
 
-excluded_languages = {'C', 'Assembly', 'Java'}
+excluded_languages = {'C', 'Assembly', 'Java', 'Makefile', 'Perl', 'Rust'}
 languages = {lang: bytes_used for lang, bytes_used in languages.items() if lang not in excluded_languages}
 
 total_bytes = sum(languages.values())
