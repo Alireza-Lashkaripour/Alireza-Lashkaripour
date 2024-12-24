@@ -41,9 +41,12 @@ for repo in repos:
     for lang, bytes_used in lang_data.items():
         languages[lang] = languages.get(lang, 0) + bytes_used
 
+excluded_languages = {'C', 'Assembly', 'Java'}
+languages = {lang: bytes_used for lang, bytes_used in languages.items() if lang not in excluded_languages}
+
 total_bytes = sum(languages.values())
 if total_bytes == 0:
-    raise ValueError("No language data found across repositories.")
+    raise ValueError("No language data found across repositories after filtering.")
 
 language_stats = {lang: (bytes_used / total_bytes) * 100 for lang, bytes_used in languages.items()}
 df = pd.DataFrame(list(language_stats.items()), columns=['Language', 'Percentage'])
@@ -66,7 +69,7 @@ for text, autotext in zip(texts, autotexts):
     autotext.set(size=10, weight="bold")
 
 ax.axis('equal')
-plt.title('GitHub Language Usage Across All Repositories', fontsize=16, weight='bold')
+plt.title('GitHub Language Usage Across All Repositories (Filtered)', fontsize=16, weight='bold')
 plt.tight_layout()
 plt.savefig('language_stats.png', format='png')
 plt.close(fig)
