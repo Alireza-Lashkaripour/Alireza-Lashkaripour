@@ -1,2 +1,2 @@
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Alireza-Lashkaripour&layout=compact)
-![Languages Usage](./language_stats.gif)
+
