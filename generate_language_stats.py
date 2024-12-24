@@ -2,6 +2,7 @@ import os
 import requests
 import matplotlib.pyplot as plt
 import pandas as pd
+from PIL import Image
 
 USERNAME = 'Alireza-Lashkaripour'
 TOKEN = os.getenv('GH_TOKEN')
@@ -53,6 +54,24 @@ colors = plt.cm.tab20.colors[:len(df['Language'])]
 
 wedges, texts, autotexts = ax.pie(
     df['Percentage'], 
+Run python generate_language_stats.py
+Traceback (most recent call last):
+  File "/home/runner/work/Alireza-Lashkaripour/Alireza-Lashkaripour/generate_language_stats.py", line 70, in <module>
+    plt.savefig('language_stats.gif', format='gif')
+  File "/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/matplotlib/pyplot.py", line 1243, in savefig
+    res = fig.savefig(*args, **kwargs)  # type: ignore[func-returns-value]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/matplotlib/figure.py", line 3490, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/matplotlib/backend_bases.py", line 2125, in print_figure
+    self._switch_canvas_and_return_print_method(format, backend)
+  File "/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/matplotlib/backend_bases.py", line 2026, in _switch_canvas_and_return_print_method
+    raise ValueError(
+ValueError: Format 'gif' is not supported (supported formats: eps, jpeg, jpg, pdf, pgf, png, ps, raw, rgba, svg, svgz, tif, tiff, webp)
+Error: Process completed with exit code 1.
     labels=df['Language'], 
     autopct=lambda p: f'{p:.1f}%' if p > 0 else '',
     startangle=140,
@@ -67,6 +86,10 @@ for text, autotext in zip(texts, autotexts):
 ax.axis('equal')
 plt.title('GitHub Language Usage Across All Repositories', fontsize=16, weight='bold')
 plt.tight_layout()
-plt.savefig('language_stats.gif', format='gif')
+plt.savefig('language_stats.png', format='png')
+plt.close(fig)
+
+img = Image.open('language_stats.png')
+img.save('language_stats.gif', format='GIF')
 
 print("Language usage GIF generated: 'language_stats.gif'")
