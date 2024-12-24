@@ -1,7 +1,6 @@
 import os
 import requests
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
 import pandas as pd
 
 USERNAME = 'Alireza-Lashkaripour'
@@ -50,19 +49,17 @@ language_stats = {lang: (bytes_used / total_bytes) * 100 for lang, bytes_used in
 df = pd.DataFrame(list(language_stats.items()), columns=['Language', 'Percentage'])
 df = df.sort_values(by='Percentage', ascending=False)
 
-fig, ax = plt.subplots(figsize=(10, 6))
-ax.set_ylim(0, max(df['Percentage']) * 1.1)
-bars = plt.bar(df['Language'], [0] * len(df['Language']), color='skyblue')
-plt.xticks(rotation=45, ha='right')
-plt.title('GitHub Language Usage Across All Repositories')
-plt.ylabel('Percentage of Codebase (%)')
+fig, ax = plt.subplots(figsize=(10, 10))
+ax.pie(
+    df['Percentage'], 
+    labels=df['Language'], 
+    autopct='%1.1f%%', 
+    startangle=140, 
+    textprops={'fontsize': 12}
+)
+ax.axis('equal')
+plt.title('GitHub Language Usage Across All Repositories', fontsize=14)
 
-def update(frame):
-    for bar, height in zip(bars, df['Percentage']):
-        bar.set_height(height * (frame + 1) / 10)
-    return bars
-
-ani = FuncAnimation(fig, update, frames=10, repeat=False)
-ani.save('language_stats.gif', writer='pillow')
+plt.savefig('language_stats.gif', format='gif')
 
 print("Language usage GIF generated: 'language_stats.gif'")
