@@ -1,55 +1,55 @@
 {
-  "timestamp": "2024-12-25T05:28:31.574809",
+  "timestamp": "2024-12-25T05:34:00.669094",
   "username": "Alireza-Lashkaripour",
   "stats": [
     {
       "language": "Python",
-      "percentage": 59.641974841465725,
+      "percentage": 59.64167155286732,
       "color": "#3572A5"
     },
     {
       "language": "Fortran",
-      "percentage": 26.32650235311815,
+      "percentage": 26.326700195504348,
       "color": "#4d41b1"
     },
     {
       "language": "Shell",
-      "percentage": 11.522246023342152,
+      "percentage": 11.522332612461247,
       "color": "#89e051"
     },
     {
       "language": "HTML",
-      "percentage": 0.41831507073050245,
+      "percentage": 0.41831821434793653,
       "color": "#E34C26"
     },
     {
       "language": "JavaScript",
-      "percentage": 0.38559415093937743,
+      "percentage": 0.3855970486606889,
       "color": "#F7DF1E"
     },
     {
       "language": "C++",
-      "percentage": 0.38548743053780277,
+      "percentage": 0.38549032745711564,
       "color": "#f34b7d"
     },
     {
       "language": "SmPL",
-      "percentage": 0.3689546616605312,
+      "percentage": 0.3689574343368891,
       "color": "#666666"
     },
     {
       "language": "Yacc",
-      "percentage": 0.2834138131150569,
+      "percentage": 0.28341594295609374,
       "color": "#666666"
     },
     {
       "language": "Lex",
-      "percentage": 0.15857095334802132,
+      "percentage": 0.1585721450010321,
       "color": "#666666"
     },
     {
       "language": "Awk",
-      "percentage": 0.15460895843956274,
+      "percentage": 0.15461012031837423,
       "color": "#666666"
     }
   ]
