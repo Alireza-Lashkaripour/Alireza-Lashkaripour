@@ -3,26 +3,54 @@ import json
 import requests
 import pandas as pd
 
-USERNAME = 'Alireza-Lashkaripour'  
+USERNAME = 'Alireza-Lashkaripour'
 TOKEN = os.getenv('GH_TOKEN')
 
 LANGUAGE_COLORS = {
     'Python': '#3572A5',
     'JavaScript': '#F7DF1E',
-    'TypeScript': '#3178C6',
     'HTML': '#E34C26',
     'CSS': '#563D7C',
-    'Fortran': '#4F5D95',
-    'Julia': '#41B883',
+    'PHP': '#4F5D95',
     'SCSS': '#CC6699',
-    'C': '#701516',
-    'Dockerfile': '#b07219',
+    'Ruby': '#701516',
+    'Java': '#b07219',
     'C++': '#f34b7d',
     'C#': '#178600',
     'Go': '#00ADD8',
-    'Tex': '#ffac45',
+    'Swift': '#ffac45',
     'Kotlin': '#F18E33',
-    'Rust': '#dea584'
+    'Rust': '#dea584',
+    'Shell': '#89e051',
+    'Dockerfile': '#384d54',
+    'Fortran': '#4d41b1',
+    'Julia': '#a270ba',
+    'TeX': '#3D6117',
+    'Jupyter Notebook': '#DA5B0B',
+    'R': '#198CE7',
+    'MATLAB': '#e16737',
+    'Assembly': '#6E4C13',
+    'LaTeX': '#008080',
+    'Markdown': '#083FA1'
+}
+
+EXCLUDED_LANGUAGES = {
+    'C',
+    'Assembly',
+    'Rust',
+    'TypeScript',
+    'Vue',
+    'Roff',
+    'Smarty',
+    'Hack',
+    'Makefile',
+    'CMake',
+    'M4',
+    'Perl',
+    'Pascal',
+    'QMake',
+    'Tcl',
+    'Vim Script'
 }
 
 def fetch_github_language_stats():
@@ -59,25 +87,22 @@ def fetch_github_language_stats():
         
         lang_data = lang_response.json()
         for lang, bytes_used in lang_data.items():
-            languages[lang] = languages.get(lang, 0) + bytes_used
+            if lang not in EXCLUDED_LANGUAGES:  # Only count non-excluded languages
+                languages[lang] = languages.get(lang, 0) + bytes_used
 
+    # Calculate percentages
     total_bytes = sum(languages.values())
     if total_bytes == 0:
         raise ValueError("No language data found across repositories.")
 
-    language_stats = {
-        lang: (bytes_used / total_bytes) * 100 
-        for lang, bytes_used in languages.items()
-    }
-
     language_data = [
         {
             "language": lang,
-            "percentage": percentage,
+            "percentage": (bytes_used / total_bytes) * 100,
             "color": LANGUAGE_COLORS.get(lang, "#666666")
         }
-        for lang, percentage in language_stats.items()
-        if percentage > 0.1
+        for lang, bytes_used in languages.items()
+        if (bytes_used / total_bytes) * 100 > 0.1  
     ]
 
     language_data.sort(key=lambda x: x["percentage"], reverse=True)
