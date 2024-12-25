@@ -1,82 +1,111 @@
 import os
+import json
 import requests
-import matplotlib.pyplot as plt
 import pandas as pd
-from PIL import Image
 
-USERNAME = 'Alireza-Lashkaripour'
+USERNAME = 'Alireza-Lashkaripour'  
 TOKEN = os.getenv('GH_TOKEN')
 
-if not TOKEN:
-    raise ValueError("GitHub token is missing. Please set 'GH_TOKEN' as an environment variable.")
+LANGUAGE_COLORS = {
+    'Python': '#3572A5',
+    'JavaScript': '#F7DF1E',
+    'TypeScript': '#3178C6',
+    'HTML': '#E34C26',
+    'CSS': '#563D7C',
+    'Fortran': '#4F5D95',
+    'Julia': '#41B883',
+    'SCSS': '#CC6699',
+    'C': '#701516',
+    'Dockerfile': '#b07219',
+    'C++': '#f34b7d',
+    'C#': '#178600',
+    'Go': '#00ADD8',
+    'Tex': '#ffac45',
+    'Kotlin': '#F18E33',
+    'Rust': '#dea584'
+}
 
-repos = []
-page = 1
+def fetch_github_language_stats():
+    if not TOKEN:
+        raise ValueError("GitHub token is missing. Please set 'GH_TOKEN' as an environment variable.")
 
-while True:
-    response = requests.get(
-        f'https://api.github.com/users/{USERNAME}/repos?per_page=100&page={page}',
-        headers={'Authorization': f'token {TOKEN}'}
-    )
-    if response.status_code != 200:
-        raise ValueError(f"Failed to fetch repositories: {response.status_code}")
-    
-    data = response.json()
-    if not data:
-        break
-    
-    repos.extend(data)
-    page += 1
+    repos = []
+    page = 1
+    while True:
+        response = requests.get(
+            f'https://api.github.com/users/{USERNAME}/repos?per_page=100&page={page}',
+            headers={'Authorization': f'token {TOKEN}'}
+        )
+        if response.status_code != 200:
+            raise ValueError(f"Failed to fetch repositories: {response.status_code}")
+        
+        data = response.json()
+        if not data:
+            break
+        
+        repos.extend(data)
+        page += 1
 
-languages = {}
+    languages = {}
+    for repo in repos:
+        lang_url = repo['languages_url']
+        lang_response = requests.get(
+            lang_url, 
+            headers={'Authorization': f'token {TOKEN}'}
+        )
+        
+        if lang_response.status_code != 200:
+            continue
+        
+        lang_data = lang_response.json()
+        for lang, bytes_used in lang_data.items():
+            languages[lang] = languages.get(lang, 0) + bytes_used
 
-for repo in repos:
-    lang_url = repo['languages_url']
-    lang_response = requests.get(lang_url, headers={'Authorization': f'token {TOKEN}'})
-    
-    if lang_response.status_code != 200:
-        continue
-    
-    lang_data = lang_response.json()
-    for lang, bytes_used in lang_data.items():
-        languages[lang] = languages.get(lang, 0) + bytes_used
+    total_bytes = sum(languages.values())
+    if total_bytes == 0:
+        raise ValueError("No language data found across repositories.")
 
-excluded_languages = {'C', 'Assembly', 'Java', 'Makefile', 'Perl', 'Rust'}
-languages = {lang: bytes_used for lang, bytes_used in languages.items() if lang not in excluded_languages}
+    language_stats = {
+        lang: (bytes_used / total_bytes) * 100 
+        for lang, bytes_used in languages.items()
+    }
 
-total_bytes = sum(languages.values())
-if total_bytes == 0:
-    raise ValueError("No language data found across repositories after filtering.")
+    language_data = [
+        {
+            "language": lang,
+            "percentage": percentage,
+            "color": LANGUAGE_COLORS.get(lang, "#666666")
+        }
+        for lang, percentage in language_stats.items()
+        if percentage > 0.1
+    ]
 
-language_stats = {lang: (bytes_used / total_bytes) * 100 for lang, bytes_used in languages.items()}
-language_stats = {lang: percentage for lang, percentage in language_stats.items() if percentage > 0}
+    language_data.sort(key=lambda x: x["percentage"], reverse=True)
 
-df = pd.DataFrame(list(language_stats.items()), columns=['Language', 'Percentage'])
-df = df.sort_values(by='Percentage', ascending=False)
+    return language_data
 
-fig, ax = plt.subplots(figsize=(10, 10))
-colors = plt.cm.tab20.colors[:len(df['Language'])]
+def generate_stats_file():
+    try:
+        language_data = fetch_github_language_stats()
+        
+        output_data = {
+            "timestamp": pd.Timestamp.now().isoformat(),
+            "username": USERNAME,
+            "stats": language_data
+        }
 
-wedges, texts, autotexts = ax.pie(
-    df['Percentage'], 
-    labels=df['Language'], 
-    autopct=lambda p: f'{p:.1f}%' if p > 0 else '',
-    startangle=140,
-    textprops={'fontsize': 12},
-    colors=colors
-)
+        with open('language_stats.json', 'w', encoding='utf-8') as f:
+            json.dump(output_data, f, indent=2)
+        
+        print("✅ Language statistics JSON generated successfully!")
+        print(f"📊 Found {len(language_data)} languages with usage > 0.1%")
+        print("\nTop 5 languages:")
+        for lang in language_data[:5]:
+            print(f"  • {lang['language']}: {lang['percentage']:.1f}%")
 
-for text, autotext in zip(texts, autotexts):
-    text.set(size=12)
-    autotext.set(size=10, weight="bold")
+    except Exception as e:
+        print(f"❌ Error generating statistics: {str(e)}")
+        raise
 
-ax.axis('equal')
-plt.title('GitHub Language Usage Across All Repositories (Filtered)', fontsize=16, weight='bold')
-plt.tight_layout()
-plt.savefig('language_stats.png', format='png')
-plt.close(fig)
-
-img = Image.open('language_stats.png')
-img.save('language_stats.gif', format='GIF')
-
-print("Language usage GIF generated: 'language_stats.gif'")
+if __name__ == "__main__":
+    generate_stats_file()
