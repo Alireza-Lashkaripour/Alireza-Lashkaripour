@@ -1,35 +1,55 @@
 {
-  "timestamp": "2024-12-25T04:54:07.552590",
+  "timestamp": "2024-12-25T05:28:31.574809",
   "username": "Alireza-Lashkaripour",
   "stats": [
     {
-      "language": "C",
-      "percentage": 95.7026794998551,
-      "color": "#701516"
-    },
-    {
       "language": "Python",
-      "percentage": 1.930031478841698,
+      "percentage": 59.641974841465725,
       "color": "#3572A5"
     },
     {
       "language": "Fortran",
-      "percentage": 0.8519486948719253,
-      "color": "#4F5D95"
-    },
-    {
-      "language": "Assembly",
-      "percentage": 0.6884271772229477,
-      "color": "#666666"
+      "percentage": 26.32650235311815,
+      "color": "#4d41b1"
     },
     {
       "language": "Shell",
-      "percentage": 0.3728699821158321,
+      "percentage": 11.522246023342152,
+      "color": "#89e051"
+    },
+    {
+      "language": "HTML",
+      "percentage": 0.41831507073050245,
+      "color": "#E34C26"
+    },
+    {
+      "language": "JavaScript",
+      "percentage": 0.38559415093937743,
+      "color": "#F7DF1E"
+    },
+    {
+      "language": "C++",
+      "percentage": 0.38548743053780277,
+      "color": "#f34b7d"
+    },
+    {
+      "language": "SmPL",
+      "percentage": 0.3689546616605312,
       "color": "#666666"
     },
     {
-      "language": "Makefile",
-      "percentage": 0.1957332131941416,
+      "language": "Yacc",
+      "percentage": 0.2834138131150569,
+      "color": "#666666"
+    },
+    {
+      "language": "Lex",
+      "percentage": 0.15857095334802132,
+      "color": "#666666"
+    },
+    {
+      "language": "Awk",
+      "percentage": 0.15460895843956274,
       "color": "#666666"
     }
   ]
