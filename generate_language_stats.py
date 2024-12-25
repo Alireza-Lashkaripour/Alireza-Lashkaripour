@@ -11,27 +11,13 @@ LANGUAGE_COLORS = {
     'JavaScript': '#F7DF1E',
     'HTML': '#E34C26',
     'CSS': '#563D7C',
-    'PHP': '#4F5D95',
-    'SCSS': '#CC6699',
-    'Ruby': '#701516',
-    'Java': '#b07219',
     'C++': '#f34b7d',
-    'C#': '#178600',
-    'Go': '#00ADD8',
-    'Swift': '#ffac45',
-    'Kotlin': '#F18E33',
-    'Rust': '#dea584',
     'Shell': '#89e051',
     'Dockerfile': '#384d54',
     'Fortran': '#4d41b1',
     'Julia': '#a270ba',
     'TeX': '#3D6117',
-    'Jupyter Notebook': '#DA5B0B',
-    'R': '#198CE7',
-    'MATLAB': '#e16737',
-    'Assembly': '#6E4C13',
     'LaTeX': '#008080',
-    'Markdown': '#083FA1'
 }
 
 EXCLUDED_LANGUAGES = {
