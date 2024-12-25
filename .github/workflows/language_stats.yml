@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  
 
       - name: Set Up Python
         uses: actions/setup-python@v4
@@ -29,15 +31,20 @@ jobs:
         run: python generate_language_stats.py
 
       - name: Commit and Push Changes
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
+          
+          # Pull the latest changes with rebase strategy
+          git pull --rebase origin main
+          
           git add language_stats.json
           if git status | grep -q 'language_stats.json'; then
             git commit -m "🔄 Update language statistics"
-            git push
+            # Push with force-with-lease for safety
+            git push --force-with-lease origin main
           else
             echo "⚠️ No changes to commit."
           fi
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
