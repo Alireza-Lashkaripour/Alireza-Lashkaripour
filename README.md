@@ -1,4 +1,3 @@
-
 <p align="center">
   <img src="https://github.com/devicons/devicon/raw/master/icons/python/python-original.svg" alt="Python" width="50"/>
   <img src="https://github.com/devicons/devicon/raw/master/icons/javascript/javascript-original.svg" alt="JavaScript" width="50"/>
