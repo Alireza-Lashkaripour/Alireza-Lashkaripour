@@ -21,22 +21,9 @@ LANGUAGE_COLORS = {
 }
 
 EXCLUDED_LANGUAGES = {
-    'C',
-    'Assembly',
-    'Rust',
-    'TypeScript',
-    'Vue',
-    'Roff',
-    'Smarty',
-    'Hack',
-    'Makefile',
-    'CMake',
-    'M4',
-    'Perl',
-    'Pascal',
-    'QMake',
-    'Tcl',
-    'Vim Script'
+    'C', 'Assembly', 'Rust', 'TypeScript', 'Vue', 'Roff',
+    'Smarty', 'Hack', 'Makefile', 'CMake', 'M4', 'Perl',
+    'Pascal', 'QMake', 'Tcl', 'Vim Script'
 }
 
 def fetch_github_language_stats():
@@ -73,10 +60,9 @@ def fetch_github_language_stats():
         
         lang_data = lang_response.json()
         for lang, bytes_used in lang_data.items():
-            if lang not in EXCLUDED_LANGUAGES:  # Only count non-excluded languages
+            if lang not in EXCLUDED_LANGUAGES:
                 languages[lang] = languages.get(lang, 0) + bytes_used
 
-    # Calculate percentages
     total_bytes = sum(languages.values())
     if total_bytes == 0:
         raise ValueError("No language data found across repositories.")
@@ -84,39 +70,32 @@ def fetch_github_language_stats():
     language_data = [
         {
             "language": lang,
-            "percentage": (bytes_used / total_bytes) * 100,
-            "color": LANGUAGE_COLORS.get(lang, "#666666")
+            "percentage": (bytes_used / total_bytes) * 100
         }
         for lang, bytes_used in languages.items()
-        if (bytes_used / total_bytes) * 100 > 0.1  
     ]
 
     language_data.sort(key=lambda x: x["percentage"], reverse=True)
+    return language_data[:10]
 
-    return language_data
-
-def generate_stats_file():
+def generate_top10_line():
     try:
         language_data = fetch_github_language_stats()
+        top10_line = ", ".join(
+            f"{lang['language']} ({lang['percentage']:.1f}%)"
+            for lang in language_data
+        )
         
-        output_data = {
-            "timestamp": pd.Timestamp.now().isoformat(),
-            "username": USERNAME,
-            "stats": language_data
-        }
-
-        with open('language_stats.json', 'w', encoding='utf-8') as f:
-            json.dump(output_data, f, indent=2)
+        print(f"Top 10 Languages: {top10_line}")
         
-        print("✅ Language statistics JSON generated successfully!")
-        print(f"📊 Found {len(language_data)} languages with usage > 0.1%")
-        print("\nTop 5 languages:")
-        for lang in language_data[:5]:
-            print(f"  • {lang['language']}: {lang['percentage']:.1f}%")
-
+        with open('top10_languages.txt', 'w', encoding='utf-8') as f:
+            f.write(top10_line)
+        
+        print("✅ Top 10 languages saved to 'top10_languages.txt'")
+        
     except Exception as e:
-        print(f"❌ Error generating statistics: {str(e)}")
+        print(f"❌ Error generating top 10 languages: {str(e)}")
         raise
 
 if __name__ == "__main__":
-    generate_stats_file()
+    generate_top10_line()
