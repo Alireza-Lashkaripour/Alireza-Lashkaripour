@@ -7,6 +7,6 @@
   <img src="https://github.com/devicons/devicon/raw/master/icons/docker/docker-original.svg" alt="Docker" width="50"/>
   <img src="https://github.com/devicons/devicon/raw/master/icons/cplusplus/cplusplus-original.svg" alt="C++" width="50"/>
   <img src="https://github.com/devicons/devicon/raw/master/icons/fortran/fortran-original.svg" alt="Fortran" width="50"/>
-  <img src="https://github.com/devicons/devicon/raw/master/icons/latex/latex-original.svg" alt="LaTeX" width="50"/>
   <img src="https://github.com/devicons/devicon/raw/master/icons/julia/julia-original.svg" alt="Julia" width="50"/>
+  <img src="https://github.com/devicons/devicon/raw/master/icons/latex/latex-original.svg" alt="LaTeX" width="50"/>
 </p>
